@@ -1,0 +1,819 @@
+<html lang="th"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ศูนย์รวมผู้เชี่ยวชาญด้านชุดตรวจโรค | Hub of Talents on Diagnostics Test Kits</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-dark: #131A2F;
+            --primary-blue: #2E4493;
+            --secondary-blue: #11A2D7;
+            --light-blue: #E5F3FA;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+        }
+        
+        .primary-dark {
+            background-color: var(--primary-dark);
+        }
+        
+        .primary-blue {
+            background-color: var(--primary-blue);
+        }
+        
+        .secondary-blue {
+            background-color: var(--secondary-blue);
+        }
+        
+        .light-blue {
+            background-color: var(--light-blue);
+        }
+        
+        .text-primary-dark {
+            color: var(--primary-dark);
+        }
+        
+        .text-primary-blue {
+            color: var(--primary-blue);
+        }
+        
+        .text-secondary-blue {
+            color: var(--secondary-blue);
+        }
+        
+        .border-primary-dark {
+            border-color: var(--primary-dark);
+        }
+        
+        .border-primary-blue {
+            border-color: var(--primary-blue);
+        }
+        
+        .border-secondary-blue {
+            border-color: var(--secondary-blue);
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-blue);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-blue);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary-blue);
+            color: var(--secondary-blue);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary-blue);
+            color: white;
+        }
+        
+        .square-edge {
+            border-radius: 0 !important;
+        }
+        
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary-blue);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--secondary-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 80%;
+            left: 10%;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--primary-dark);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--primary-blue);
+        }
+        
+        .stat-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary-blue);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .expert-card {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .expert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        
+        .news-card {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        
+        .partner-logo {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            max-height: 60px;
+            max-width: 120px;
+        }
+        
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        .language-switcher {
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 0;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .language-switcher:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .mobile-menu-content {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-dark);
+                z-index: 100;
+            }
+            
+            .mobile-menu-content.active {
+                display: block;
+            }
+            
+            .mobile-menu-content a {
+                display: block;
+                padding: 1rem;
+                color: white;
+                text-decoration: none;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.relative{position:relative}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-8{margin-bottom:2rem}.mr-1{margin-right:0.25rem}.mr-2{margin-right:0.5rem}.mr-4{margin-right:1rem}.mt-0\.5{margin-top:0.125rem}.mt-8{margin-top:2rem}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-16{height:4rem}.h-32{height:8rem}.h-48{height:12rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-auto{height:auto}.w-16{width:4rem}.w-6{width:1.5rem}.w-8{width:2rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-1 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.25rem * var(--tw-space-x-reverse));margin-left:calc(0.25rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.border-t{border-top-width:1px}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.border-white{--tw-border-opacity:1;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-opacity-20{--tw-bg-opacity:0.2}.p-4{padding:1rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}@media (min-width: 768px){.md\:mb-0{margin-bottom:0px}.md\:inline-block{display:inline-block}.md\:w-1\/2{width:50%}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:py-24{padding-top:6rem;padding-bottom:6rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}.lg\:text-5xl{font-size:3rem;line-height:1}}</style></head>
+<body>
+    <!-- Header -->
+    <header class="primary-dark">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="text-white font-bold text-xl mr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                    </svg>
+                    <span class="hidden md:inline-block">ศูนย์รวมผู้เชี่ยวชาญด้านชุดตรวจโรค</span>
+                </div>
+            </div>
+            
+            <div class="flex items-center">
+                <div class="language-switcher square-edge mr-4">
+                    TH | EN
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="desktop-menu">
+                    <ul class="flex space-x-1">
+                        <li><a href="#" class="nav-link">หน้าแรก</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link">เกี่ยวกับเรา</a>
+                            <div class="dropdown-content square-edge">
+                                <a href="#">ความเป็นมาและพันธกิจ</a>
+                                <a href="#">วัตถุประสงค์ของศูนย์ฯ</a>
+                                <a href="#">โครงสร้างการบริหาร</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link">เครือข่ายผู้เชี่ยวชาญ</a>
+                            <div class="dropdown-content square-edge">
+                                <a href="#">คณะทำงานหลัก</a>
+                                <a href="#">ฐานข้อมูลผู้เชี่ยวชาญ</a>
+                            </div>
+                        </li>
+                        <li><a href="#" class="nav-link">เครือข่ายความร่วมมือ</a></li>
+                        <li><a href="#" class="nav-link">งานวิจัยและนวัตกรรม</a></li>
+                        <li><a href="#" class="nav-link">ผลงาน</a></li>
+                        <li><a href="#" class="nav-link">ข่าวสารและกิจกรรม</a></li>
+                        <li><a href="#" class="nav-link">ติดต่อเรา</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <div class="mobile-menu">
+                    <button id="mobile-menu-button" class="text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    
+                    <div id="mobile-menu-content" class="mobile-menu-content square-edge">
+                        <a href="#">หน้าแรก</a>
+                        <a href="#">เกี่ยวกับเรา</a>
+                        <a href="#">เครือข่ายผู้เชี่ยวชาญ</a>
+                        <a href="#">เครือข่ายความร่วมมือ</a>
+                        <a href="#">งานวิจัยและนวัตกรรม</a>
+                        <a href="#">ผลงาน</a>
+                        <a href="#">ข่าวสารและกิจกรรม</a>
+                        <a href="#">ติดต่อเรา</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="primary-blue py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                        ขับเคลื่อนนวัตกรรมชุดตรวจโรค<br>เพื่อความมั่นคงทางสาธารณสุขของไทย
+                    </h1>
+                    <p class="text-light-blue text-lg mb-8">
+                        ศูนย์กลางเครือข่ายผู้เชี่ยวชาญด้านชุดตรวจโรค เชื่อมโยงนักวิจัย ภาคอุตสาหกรรม และหน่วยงานภาครัฐ เพื่อพัฒนานวัตกรรมและเทคโนโลยีชุดตรวจโรคของประเทศไทย
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="btn btn-primary square-edge">ค้นหาผู้เชี่ยวชาญ</button>
+                        <button class="btn btn-outline square-edge text-white border-white">เทคโนโลยีพร้อมถ่ายทอด</button>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <svg class="w-full h-auto" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="50" y="50" width="400" height="300" fill="#E5F3FA"></rect>
+                            <circle cx="250" cy="200" r="80" fill="#11A2D7" opacity="0.7"></circle>
+                            <path d="M150 150 L350 250 L150 350 Z" fill="#2E4493" opacity="0.6"></path>
+                            <g transform="translate(180, 170)">
+                                <rect x="0" y="0" width="140" height="60" rx="5" fill="#131A2F"></rect>
+                                <rect x="10" y="10" width="120" height="10" rx="2" fill="#E5F3FA"></rect>
+                                <rect x="10" y="25" width="80" height="10" rx="2" fill="#E5F3FA"></rect>
+                                <rect x="10" y="40" width="100" height="10" rx="2" fill="#E5F3FA"></rect>
+                            </g>
+                            <g transform="translate(100, 100)">
+                                <circle cx="0" cy="0" r="30" fill="#11A2D7" opacity="0.8"></circle>
+                                <path d="M-15 0 L15 0 M0 -15 L0 15" stroke="white" stroke-width="4"></path>
+                            </g>
+                            <g transform="translate(350, 300)">
+                                <circle cx="0" cy="0" r="25" fill="#2E4493" opacity="0.8"></circle>
+                                <path d="M-10 -10 L10 10 M-10 10 L10 -10" stroke="white" stroke-width="3"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Numbers Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-center text-primary-dark text-3xl font-bold mb-12">ศักยภาพของเครือข่าย</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="stat-card">
+                    <div class="text-4xl font-bold text-secondary-blue mb-2">50+</div>
+                    <div class="text-gray-600">ผู้เชี่ยวชาญ</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="text-4xl font-bold text-secondary-blue mb-2">15</div>
+                    <div class="text-gray-600">สถาบันในเครือข่าย</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="text-4xl font-bold text-secondary-blue mb-2">120+</div>
+                    <div class="text-gray-600">ผลงานตีพิมพ์</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="text-4xl font-bold text-secondary-blue mb-2">25</div>
+                    <div class="text-gray-600">เทคโนโลยีพร้อมถ่ายทอด</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Experts Section -->
+    <section class="py-16 light-blue">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-primary-dark text-3xl font-bold">ผู้เชี่ยวชาญเด่น</h2>
+                <a href="#" class="text-secondary-blue hover:underline">ดูทั้งหมด</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Expert 1 -->
+                <div class="expert-card square-edge overflow-hidden">
+                    <div class="bg-primary-blue h-32 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-primary-dark">ศ.ดร. สมชาย ใจดี</h3>
+                        <p class="text-gray-600 mb-2">จุฬาลงกรณ์มหาวิทยาลัย</p>
+                        <div class="mb-3">
+                            <span class="inline-block bg-secondary-blue bg-opacity-20 text-secondary-blue text-sm px-2 py-1 mr-1 mb-1">Biosensors</span>
+                            <span class="inline-block bg-secondary-blue bg-opacity-20 text-secondary-blue text-sm px-2 py-1 mr-1 mb-1">Nanotechnology</span>
+                        </div>
+                        <a href="#" class="text-secondary-blue hover:underline text-sm">ดูโปรไฟล์</a>
+                    </div>
+                </div>
+                
+                <!-- Expert 2 -->
+                <div class="expert-card square-edge overflow-hidden">
+                    <div class="bg-primary-blue h-32 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-primary-dark">รศ.ดร. วิมล ศรีสุข</h3>
+                        <p class="text-gray-600 mb-2">มหาวิทยาลัยมหิดล</p>
+                        <div class="mb-3">
+                            <span class="inline-block bg-secondary-blue bg-opacity-20 text-secondary-blue text-sm px-2 py-1 mr-1 mb-1">Immunoassay</span>
+                            <span class="inline-block bg-secondary-blue bg-opacity-20 text-secondary-blue text-sm px-2 py-1 mr-1 mb-1">Molecular Diagnostics</span>
+                        </div>
+                        <a href="#" class="text-secondary-blue hover:underline text-sm">ดูโปรไฟล์</a>
+                    </div>
+                </div>
+                
+                <!-- Expert 3 -->
+                <div class="expert-card square-edge overflow-hidden">
+                    <div class="bg-primary-blue h-32 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-primary-dark">ผศ.ดร. นภา รักษาความดี</h3>
+                        <p class="text-gray-600 mb-2">มหาวิทยาลัยเชียงใหม่</p>
+                        <div class="mb-3">
+                            <span class="inline-block bg-secondary-blue bg-opacity-20 text-secondary-blue text-sm px-2 py-1 mr-1 mb-1">Point-of-Care Testing</span>
+                            <span class="inline-block bg-secondary-blue bg-opacity-20 text-secondary-blue text-sm px-2 py-1 mr-1 mb-1">ISO 13485</span>
+                        </div>
+                        <a href="#" class="text-secondary-blue hover:underline text-sm">ดูโปรไฟล์</a>
+                    </div>
+                </div>
+                
+                <!-- Expert 4 -->
+                <div class="expert-card square-edge overflow-hidden">
+                    <div class="bg-primary-blue h-32 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-primary-dark">ดร. ประภาส สมศักดิ์</h3>
+                        <p class="text-gray-600 mb-2">มหาวิทยาลัยขอนแก่น</p>
+                        <div class="mb-3">
+                            <span class="inline-block bg-secondary-blue bg-opacity-20 text-secondary-blue text-sm px-2 py-1 mr-1 mb-1">Electrochemical Sensors</span>
+                            <span class="inline-block bg-secondary-blue bg-opacity-20 text-secondary-blue text-sm px-2 py-1 mr-1 mb-1">Microfluidics</span>
+                        </div>
+                        <a href="#" class="text-secondary-blue hover:underline text-sm">ดูโปรไฟล์</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Areas Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-center text-primary-dark text-3xl font-bold mb-12">ขอบเขตงานวิจัย</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Research Area 1 -->
+                <div class="flex">
+                    <div class="mr-4">
+                        <div class="w-16 h-16 bg-secondary-blue square-edge flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">Biosensors</h3>
+                        <p class="text-gray-600">การพัฒนาเซนเซอร์ชีวภาพสำหรับการตรวจวัดสารชีวโมเลกุลและเชื้อก่อโรคด้วยความไวและความจำเพาะสูง</p>
+                    </div>
+                </div>
+                
+                <!-- Research Area 2 -->
+                <div class="flex">
+                    <div class="mr-4">
+                        <div class="w-16 h-16 bg-secondary-blue square-edge flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">Immunoassay</h3>
+                        <p class="text-gray-600">การพัฒนาเทคนิคการตรวจวัดทางภูมิคุ้มกันวิทยาที่มีประสิทธิภาพสูงและต้นทุนต่ำ</p>
+                    </div>
+                </div>
+                
+                <!-- Research Area 3 -->
+                <div class="flex">
+                    <div class="mr-4">
+                        <div class="w-16 h-16 bg-secondary-blue square-edge flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">Molecular Diagnostics</h3>
+                        <p class="text-gray-600">การพัฒนาเทคโนโลยีการตรวจวินิจฉัยระดับโมเลกุลที่รวดเร็วและแม่นยำ</p>
+                    </div>
+                </div>
+                
+                <!-- Research Area 4 -->
+                <div class="flex">
+                    <div class="mr-4">
+                        <div class="w-16 h-16 bg-secondary-blue square-edge flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">Point-of-Care Testing</h3>
+                        <p class="text-gray-600">การพัฒนาชุดตรวจแบบ Point-of-Care ที่ใช้งานง่าย รวดเร็ว และมีความแม่นยำสูง</p>
+                    </div>
+                </div>
+                
+                <!-- Research Area 5 -->
+                <div class="flex">
+                    <div class="mr-4">
+                        <div class="w-16 h-16 bg-secondary-blue square-edge flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">Microfluidics</h3>
+                        <p class="text-gray-600">การพัฒนาระบบไมโครฟลูอิดิกส์สำหรับการตรวจวินิจฉัยโรคแบบบูรณาการ</p>
+                    </div>
+                </div>
+                
+                <!-- Research Area 6 -->
+                <div class="flex">
+                    <div class="mr-4">
+                        <div class="w-16 h-16 bg-secondary-blue square-edge flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">Quality Standards</h3>
+                        <p class="text-gray-600">การพัฒนามาตรฐานคุณภาพและการรับรองชุดตรวจโรคตามมาตรฐานสากล เช่น ISO 13485</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News Section -->
+    <section class="py-16 light-blue">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-primary-dark text-3xl font-bold">ข่าวสารและกิจกรรมล่าสุด</h2>
+                <a href="#" class="text-secondary-blue hover:underline">ดูทั้งหมด</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- News 1 -->
+                <div class="news-card square-edge overflow-hidden">
+                    <div class="h-48 bg-primary-blue flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-secondary-blue text-sm mb-2">15 มิถุนายน 2566</div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">การประชุมเครือข่ายผู้เชี่ยวชาญด้านชุดตรวจโรคประจำปี 2566</h3>
+                        <p class="text-gray-600 mb-4">การประชุมประจำปีของเครือข่ายผู้เชี่ยวชาญด้านชุดตรวจโรค เพื่อแลกเปลี่ยนความรู้และประสบการณ์ในการพัฒนาชุดตรวจโรค</p>
+                        <a href="#" class="text-secondary-blue hover:underline">อ่านเพิ่มเติม</a>
+                    </div>
+                </div>
+                
+                <!-- News 2 -->
+                <div class="news-card square-edge overflow-hidden">
+                    <div class="h-48 bg-primary-blue flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-secondary-blue text-sm mb-2">5 พฤษภาคม 2566</div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">การอบรมเชิงปฏิบัติการ "การพัฒนาชุดตรวจโรคตามมาตรฐาน ISO 13485"</h3>
+                        <p class="text-gray-600 mb-4">การอบรมเชิงปฏิบัติการเพื่อพัฒนาศักยภาพนักวิจัยในการพัฒนาชุดตรวจโรคตามมาตรฐานสากล</p>
+                        <a href="#" class="text-secondary-blue hover:underline">อ่านเพิ่มเติม</a>
+                    </div>
+                </div>
+                
+                <!-- News 3 -->
+                <div class="news-card square-edge overflow-hidden">
+                    <div class="h-48 bg-primary-blue flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-secondary-blue text-sm mb-2">20 เมษายน 2566</div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-2">ความร่วมมือกับบริษัท MedTech ในการพัฒนาชุดตรวจโรคติดเชื้อ</h3>
+                        <p class="text-gray-600 mb-4">ศูนย์รวมผู้เชี่ยวชาญด้านชุดตรวจโรคได้ลงนามความร่วมมือกับบริษัท MedTech ในการพัฒนาชุดตรวจโรคติดเชื้อรุ่นใหม่</p>
+                        <a href="#" class="text-secondary-blue hover:underline">อ่านเพิ่มเติม</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-center text-primary-dark text-3xl font-bold mb-12">เครือข่ายความร่วมมือ</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center">
+                <!-- Partner 1 -->
+                <div class="flex justify-center">
+                    <div class="partner-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" width="100" height="60">
+                            <rect width="100" height="60" fill="#2E4493"></rect>
+                            <text x="50" y="35" font-family="Arial" font-size="12" fill="white" text-anchor="middle">จุฬาลงกรณ์</text>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Partner 2 -->
+                <div class="flex justify-center">
+                    <div class="partner-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" width="100" height="60">
+                            <rect width="100" height="60" fill="#11A2D7"></rect>
+                            <text x="50" y="35" font-family="Arial" font-size="12" fill="white" text-anchor="middle">มหิดล</text>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Partner 3 -->
+                <div class="flex justify-center">
+                    <div class="partner-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" width="100" height="60">
+                            <rect width="100" height="60" fill="#131A2F"></rect>
+                            <text x="50" y="35" font-family="Arial" font-size="12" fill="white" text-anchor="middle">เชียงใหม่</text>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Partner 4 -->
+                <div class="flex justify-center">
+                    <div class="partner-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" width="100" height="60">
+                            <rect width="100" height="60" fill="#2E4493"></rect>
+                            <text x="50" y="35" font-family="Arial" font-size="12" fill="white" text-anchor="middle">ขอนแก่น</text>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Partner 5 -->
+                <div class="flex justify-center">
+                    <div class="partner-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" width="100" height="60">
+                            <rect width="100" height="60" fill="#11A2D7"></rect>
+                            <text x="50" y="35" font-family="Arial" font-size="12" fill="white" text-anchor="middle">สวทช.</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 primary-blue">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-white text-3xl font-bold mb-4">สนใจร่วมงานกับเรา?</h2>
+            <p class="text-light-blue text-lg mb-8 max-w-2xl mx-auto">
+                ไม่ว่าคุณจะเป็นนักวิจัย ผู้ประกอบการ หรือหน่วยงานที่สนใจเทคโนโลยีชุดตรวจโรค เราพร้อมที่จะร่วมมือกับคุณ
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="btn btn-primary square-edge">ค้นหาผู้เชี่ยวชาญ</button>
+                <button class="btn btn-outline square-edge text-white border-white">ติดต่อเรา</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="primary-dark py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div>
+                    <h3 class="text-white text-xl font-semibold mb-4">ศูนย์รวมผู้เชี่ยวชาญด้านชุดตรวจโรค</h3>
+                    <p class="text-gray-300 mb-4">
+                        ศูนย์กลางเครือข่ายผู้เชี่ยวชาญด้านชุดตรวจโรค เพื่อพัฒนานวัตกรรมและเทคโนโลยีชุดตรวจโรคของประเทศไทย
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-secondary-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-white hover:text-secondary-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.054 10.054 0 01-3.127 1.184 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-white hover:text-secondary-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h3 class="text-white text-xl font-semibold mb-4">เมนูหลัก</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-secondary-blue">หน้าแรก</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary-blue">เกี่ยวกับเรา</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary-blue">เครือข่ายผู้เชี่ยวชาญ</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary-blue">เครือข่ายความร่วมมือ</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary-blue">งานวิจัยและนวัตกรรม</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary-blue">ผลงาน</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary-blue">ข่าวสารและกิจกรรม</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary-blue">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h3 class="text-white text-xl font-semibold mb-4">ลิงก์ที่เกี่ยวข้อง</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-secondary-blue">สำนักงานการวิจัยแห่งชาติ (วช.)</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary-blue">สำนักงานพัฒนาวิทยาศาสตร์และเทคโนโลยีแห่งชาติ (สวทช.)</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary-blue">กระทรวงการอุดมศึกษา วิทยาศาสตร์ วิจัยและนวัตกรรม</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary-blue">สำนักงานคณะกรรมการอาหารและยา (อย.)</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div>
+                    <h3 class="text-white text-xl font-semibold mb-4">ติดต่อเรา</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary-blue mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="text-gray-300">
+                                ศูนย์รวมผู้เชี่ยวชาญด้านชุดตรวจโรค<br>
+                                เลขที่ 123 ถนนพญาไท แขวงวังใหม่<br>
+                                เขตปทุมวัน กรุงเทพฯ 10330
+                            </span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary-blue mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span class="text-gray-300">02-123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary-blue mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span class="text-gray-300">info@diagnosticshub.ac.th</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">© 2566 ศูนย์รวมผู้เชี่ยวชาญด้านชุดตรวจโรค. สงวนลิขสิทธิ์.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu-content').classList.toggle('active');
+        });
+        
+        // Language switcher functionality
+        document.querySelector('.language-switcher').addEventListener('click', function() {
+            // In a real implementation, this would switch between Thai and English
+            const currentText = this.textContent.trim();
+            if (currentText === 'TH | EN') {
+                this.textContent = 'EN | TH';
+                // Here you would also change the page content to English
+            } else {
+                this.textContent = 'TH | EN';
+                // Here you would change the page content back to Thai
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94df58102078ce0f',t:'MTc0OTYyNjQwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+
+</body></html>
