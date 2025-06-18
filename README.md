@@ -1,4 +1,4 @@
-# Hub of Talents (Hub of Talents on Diagnostics Test Kits)
+# Hub of Talents (Diagnostics Test Kits)
 
 [![Status: Development](https://img.shields.io/badge/Status-Development-yellow)]()
 [![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
