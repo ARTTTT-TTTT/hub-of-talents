@@ -6,7 +6,7 @@
 
 <!-- [![Version](https://img.shields.io/github/v/release/ARTTTT-TTTT/hub-of-talents)](https://github.com/ARTTTT-TTTT/hub-of-talents/releases) -->
 
-> ศูนย์รวมผู้เชี่ยวชาญด้านชุดตรวจโรค (Diagnostics Test Kits) ที่มีเป้าหมายเพื่อส่งเสริมการเชื่อมโยงระหว่างนักวิจัย ผู้พัฒนา ผู้เชี่ยวชาญเฉพาะทาง และผู้ใช้งานจริง
+> **ศูนย์รวมผู้เชี่ยวชาญด้านชุดตรวจโรค** (Diagnostics Test Kits) ที่มีเป้าหมายเพื่อส่งเสริมการเชื่อมโยงระหว่างนักวิจัย ผู้พัฒนา ผู้เชี่ยวชาญเฉพาะทาง และผู้ใช้งานจริง
 
 ---
 
